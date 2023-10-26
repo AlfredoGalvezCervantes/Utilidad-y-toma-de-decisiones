@@ -1,0 +1,10 @@
+utilidad def ( x , y ):
+    # Esta es una función de utilidad simple que suma los valores de xe y.
+    volver  x  +  y
+
+# Ejemplo de uso
+x  =  5
+y  =  10
+resultado  =  utilidad ( x , y )
+
+print ( f"La utilidad de elegir x= { x } ey= { y } es { resultado } " )
