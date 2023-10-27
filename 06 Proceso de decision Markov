@@ -1,0 +1,59 @@
+# _*_ codificación: utf-8 _*_
+#!/usr/bin/env pitón
+# _*_ codificación: cp1252 _*_
+# _*_ cdoing: 850 _*_
+
+# instalar la biblioteca gimnasio
+ instalación  de pip gimnasio
+
+importar  gimnasio
+desde  espacios de importación de gimnasio  
+importar  numpy  como  np
+
+clase  MDPEnvironment ( gimnasio . Env ):
+    def  __init__ ( yo ):
+        super ( MDPEnvironment , self ). __inicio__ ()
+
+        # Definir el espacio de observación y acción
+        yo mismo . espacio_observación  =  espacios . Discreto ( 3 )   # Espacio de estados {0, 1, 2}
+        yo mismo . action_space  =  espacios . Discreto ( 2 )   # Espacio de acciones {0, 1}
+
+        # Definir parámetros del MDP
+        yo mismo . probabilidades_de_transición  =  np . matriz ([
+            [ 0,9 , 0,1 , 0,0 ],
+            [ 0,0 , 0,9 , 0,1 ],
+            [ 0,0 , 0,0 , 1,0 ]
+        ])
+        yo mismo . recompensas  =  np . matriz ([ 1 , 0 , 0 ])
+        yo mismo . estado_actual  =  0
+
+    def  paso ( yo , acción ):
+        # Realizar una transición en el MDP
+        estado_siguiente  =  np . aleatorio . elección ( self . espacio_observación . n , p = self . probabilidades_transición [ self . estado_actual ])
+        recompensa  =  yo . recompensas [ next_state ]
+        yo mismo . estado_actual  =  estado_siguiente
+
+        # Determinar si el episodio ha terminado
+        hecho  =  yo . estado_actual  ==  2
+
+        devolver  next_state , recompensa , hecho , {}
+
+     reinicio predeterminado ( auto ):
+        # Restablecer el estado del MDP
+        yo mismo . estado_actual  =  0
+        regresar a  uno mismo . estado actual
+
+# Crear una instancia del entorno MDP
+env  =  entorno MDPE ()
+
+# Realizar episodios de prueba
+para  _  en el  rango ( 5 ):
+    estado  =  entorno . restablecer ()
+    hecho  =  falso
+    recompensa_total  =  0
+    mientras  no haya  terminado :
+        acción  =  entorno . espacio_acción . muestra ()   # Política aleatoria
+        next_state , recompensa , hecho , _  =  env . paso ( acción )
+        recompensa_total  +=  recompensa
+        estado  =  siguiente_estado
+    print ( f"Episodio terminado con recompensa total: { total_reward } " )
