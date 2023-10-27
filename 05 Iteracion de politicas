@@ -1,0 +1,51 @@
+# Definición del MDP (recompensas y transiciones)
+# El MDP es una cuadrícula de 3x3 con un estado objetivo (+1), un estado de trampa (-1) y estados normales (0).
+
+mdp  = [
+    [ 0 , 0 , 0 ],
+    [ 0 , 1 , - 1 ],
+    [ 0 , 0 , 0 ]
+]
+
+# Tamaño del MDP
+núm_filas  =  len ( mdp )
+num_cols  =  len ( mdp [ 0 ])
+
+# Política inicial (arriba, abajo, izquierda, derecha)
+política  = [
+    [ 1 , 0 , 0 , 0 ],
+    [ 0 , 0 , 1 , 0 ],
+    [ 0 , 0 , 0 , 1 ]
+]
+
+# Parámetro de descuento (gamma)
+gama  =  0,9
+
+# Función para calcular el valor de un estado dada la política actual
+def  calcular_valor_estado ( fila , columna ):
+    acción  =  política [ fila ] [ columna ]
+    si  acción  ==  0 :   # Arriba
+        siguiente_fila  =  máx ( fila  -  1 , 0 )
+        siguiente_col  =  columna
+     acción  elif ==  1 :   # Abajo
+        siguiente_fila  =  min ( fila  +  1 , núm_filas  -  1 )
+        siguiente_col  =  columna
+     acción  elif ==  2 :   #Izquierda
+        siguiente_fila  =  fila
+        siguiente_col  =  máximo ( columna  -  1 , 0 )
+    más :   #Derecha
+        siguiente_fila  =  fila
+        siguiente_col  =  min ( columna  +  1 , num_cols  -  1 )
+    devolver  mdp [ fila ] [ col ] +  gamma  *  valores_estado [ fila_siguiente ] [ col_siguiente ]
+
+# Iteración de políticas
+núm_iteraciones  =  100
+para  _  dentro del  rango ( num_iterations ):
+    state_values  ​​= [[ 0  para  _  en  el rango ( num_cols )] para  _  en el  rango ( num_rows )]
+    para  fila  en  rango ( num_rows ):
+        para  columnas  en el  rango ( num_cols ):
+            valores_estado [ fila ][ columna ] =  calcular_valor_estado ( fila , columna )
+
+# Imprimir los valores de estado resultantes
+para  la fila  en  state_values :
+    imprimir ( fila )
