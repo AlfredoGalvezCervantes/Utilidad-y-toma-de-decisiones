@@ -1,0 +1,22 @@
+# _*_ codificación: utf-8 _*_
+#!/usr/bin/env pitón
+# _*_ codificación: cp1252 _*_
+# _*_ cdoing: 850 _*_
+
+ instalación de  pip nashpy
+
+importar  nashpy  como  nash
+importar  numpy  como  np
+
+# Definir las matrices de pagos para dos jugadores en un juego de coordinación
+# Cada matriz representa los pagos para el jugador 1 y el jugador 2 en función de sus acciones
+jugador_matriz_1  =  np . matriz ([[ 3 , 0 ], [ 2 , 2 ]])
+jugador_matriz_2  =  np . matriz ([[ 3 , 2 ], [ 0 , 2 ]])
+
+# Crea el juego en forma normal
+juego  =  nash . Juego ( matriz_jugador_1 , matriz_jugador_2 )
+
+# Encuentra y muestra los equilibrios de Nash
+equilibrios  =  juego . soporte_enumeración ()
+para  eq  en  equilibrios :
+    print ( "Equilibrio de Nash:" , eq )
