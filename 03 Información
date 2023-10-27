@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Ejemplo de valores en un conjunto de datos (0 para negativo, 1 para positivo)
+        List<int> dataset = new List<int> { 0, 1, 0, 1, 1, 0, 0, 1, 0, 1 };
+
+        // Calcula la entropía del conjunto de datos completo
+        double entropy = CalculateEntropy(dataset);
+
+        Console.WriteLine("Entropía del conjunto de datos completo: " + entropy);
+    }
+
+    // Función para calcular la entropía de un conjunto de datos
+    static double CalculateEntropy(List<int> data)
+    {
+        int total = data.Count;
+        int countPositive = data.Count(x => x == 1);
+        int countNegative = total - countPositive;
+
+        double pPositive = (double)countPositive / total;
+        double pNegative = (double)countNegative / total;
+
+        if (pPositive == 0 || pNegative == 0)
+        {
+            return 0.0; // Evitar logaritmo de cero
+        }
+
+        double entropy = -pPositive * Math.Log2(pPositive) - pNegative * Math.Log2(pNegative);
+
+        return entropy;
+    }
+}
